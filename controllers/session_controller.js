@@ -62,11 +62,26 @@ router.post(`/new-user`, (req, res) => {
     const email = req.body.email
     const textpassword = req.body.password
 
-    const sql = `SELECT * FROM users WHERE email = '${email}';`
-
-    db.query(sql, (err, dbRes) => {
+    const sql = `SELECT * FROM users WHERE email = $1;`
+    const sqlInput = [email]
+    db.query(sql, sqlInput, (err, dbRes) => {
         if (dbRes.rows.length > 0) {
             res.redirect(`login`)
+        } else {
+            bcrypt.genSalt(10, (err, salt) => {
+                bcrypt.hash(textpassword, salt, (err, digestedPass) => {
+            
+                    const sql = `INSERT INTO users (email, password_digest) VALUES ($1, $2);`
+                    // digestedPass is what we save in db
+                    console.log(digestedPass);
+                    const sqlInput = [email, digestedPass]
+                    db.query(sql, sqlInput, (err, dbRes) => {
+                        console.log(err);
+                        res.redirect(`/`)
+                        // db.end()
+                    })
+                })
+            })
         }
     })
 })
