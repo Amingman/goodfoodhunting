@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>THE <%= dish.title %></h1>
+    <p><%= //dishes.description %></p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores mollitia eveniet aliquid delectus esse incidunt officia, ipsa natus aut distinctio, alias impedit neque amet deserunt, sequi adipisci tempora laudantium a.</p>
+    <img src="<%= dish.image_url %>" alt="">
+
+    <form action="/dishes/<%=dish.id%>/delete_dish" method="post">
+        <input type="hidden" name="_method" value="DELETE"><!-- this line will recogise the method as delete. not the method in the form tag --> 
+        <button type="hidden" name="_method" value="<%= dish.id %>">delete</button>
+    </form>
+    <h3>
+        <form action="/dishes/<%=dish.id%>">
+            <input type="hidden" name="_method" id="" value="<%= dish.id %>">
+            <button>Edit a Dish</button>
+        </form>
+    </h3>
+    <!-- <a href="/dishes/<%= //dish.id %>/delete_dish">delete</a> -->
+</body>
+</html>

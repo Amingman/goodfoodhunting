@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 100px;
+            aspect-ratio: 1/1;
+        }
+    </style>
+</head>
+<body>
+    <!-- No longer use the one below, because we setup a middleware that check if logged in and passed info when logged in -->
+    <!-- <div><%= // email %></div> if you have not logged in, this will not cause error because it will be undefined. Undefined will just mean its empty -->
+
+    <% if (!isLoggedIn()) { %>
+        <a href="/login"> log in</a>
+    <% } else { %>
+        <h3>logged in as <%= currentUser.email %></h3>
+        <a href="/logout"> log out</a>    
+    <% } %>
+
+
+    <h1>GoodFoodHunting</h1>
+    <h3><a href="/dishes/new">Share a Dish</a></h3>
+    <% dishes.forEach(dish => { %>
+        <h2><a href="/dishes/<%=dish.id%>"><%=dish.title%></a></h2>
+        <p><img src="<%=dish.image_url%>" alt=""></p>
+    <% }) %>
+</body>
+</html>
