@@ -2,11 +2,11 @@ CREATE DATABASE goodfoodhunting;
 
 CREATE TABLE dishes (
     id SERIAL PRIMARY KEY,
-    -- title VARCHAR(200), -- Give limit for string
     title TEXT,
-    image_url TEXT
-
+    image_url TEXT,
+    user_id INTEGER
 );
+
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,

@@ -1,6 +1,7 @@
 const express = require(`express`)
 const router = express.Router()
 const bcrypt = require(`bcrypt`);
+// const bcrypt = require(`bcrypt`);
 
 // const {Pool} = require (`pg`) // Not pool because we only use once
 
@@ -9,10 +10,16 @@ const bcrypt = require(`bcrypt`);
 // })
 const db = require(`../db`)
 
+db.connect()
+
+
 router.get(`/login`, (req, res) => {
     res.render(`login`)
 }) // session
 
+router.get(`/signup`, (req, res) => {
+    res.render(`signup`)
+})
 
 // This is not the session. This is just checking your ID. To start a session, see server.js
 router.post(`/sessions`, (req, res) => {
@@ -51,7 +58,18 @@ router.post(`/sessions`, (req, res) => {
     // res.json(req.body)
 })
 
+router.post(`/new-user`, (req, res) => {
+    const email = req.body.email
+    const textpassword = req.body.password
 
+    const sql = `SELECT * FROM users WHERE email = '${email}';`
+
+    db.query(sql, (err, dbRes) => {
+        if (dbRes.rows.length > 0) {
+            res.redirect(`login`)
+        }
+    })
+})
 
 
 
@@ -76,6 +94,8 @@ router.get(`/logout`, (req, res) => { // change this to delete instead of get wh
         res.redirect(`/`)
     })
 })
+
+
 
 
 

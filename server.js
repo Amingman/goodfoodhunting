@@ -9,7 +9,7 @@ const viewHelpers = require(`./middlewares/view_helpers`)
 // const db = require(`./middlewares/db`)
 
 const app = express()
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 8070
 
 // const {Client} = require(`pg`) // Not using this anymore
 
@@ -21,6 +21,7 @@ const setCurrentUser = require("./middlewares/setCurrentUser")
 // const client = new Client({
 //     database: `goodfoodhunting`,
 // })
+
 
 
 app.use(express.static("public"))

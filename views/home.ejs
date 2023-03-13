@@ -17,7 +17,8 @@
     <!-- <div><%= // email %></div> if you have not logged in, this will not cause error because it will be undefined. Undefined will just mean its empty -->
 
     <% if (!isLoggedIn()) { %>
-        <a href="/login"> log in</a>
+        <a href="/login">log in</a>
+        <a href="/signup">sign up</a>
     <% } else { %>
         <h3>logged in as <%= currentUser.email %></h3>
         <a href="/logout"> log out</a>    
